@@ -1,3 +1,38 @@
+<!--This is the start of new product finder codes for header or main menu contents -->
+<div class="row">
+            <div class="col-xs-12">
+                [%list type:'content' filter:'content_type=category&content_level=1' sort:'sortorder,content_name' limit:'999'%]
+                    [%param *header%]
+                        [%site_value id:'footer_javascript'%]
+                            <script>
+                                $(document).ready(function(){
+                                    $.compatListInit({});
+                                    $(".compatibility_list").change(function() {
+                                        $.buildCompatList($(this));
+                                    });
+                                });
+                            </script>
+                        [%/site_value%]                
+                        <div id="compat_list" class="n-wrapper-form-control">
+                            <p class="product-finder-label">Product Finder</p>
+                            <select name="clist" id="clist" class="compatibility_list form-control">
+                                <option value="">Choose Option</option>
+                    [%/param%]
+                    [%param *body%]
+                        <option value="[@content_id@]">[@content_name@]</option>
+                    [%/param%]
+                    [%param *footer%]
+                            </select>
+                        </div>
+                    [%/param%]
+                [%/list%]
+            </div>
+        </div>
+<!--This is the end of the new product codes -->
+
+
+
+
 [%load_template file:'cms/includes/sidebar.template.html'/%]
 	[%if [@config:show_home_ads@]%]
 		[%advert type:'text' template:'carousel' limit:'10' ad_group:''%]
